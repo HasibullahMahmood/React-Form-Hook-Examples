@@ -11,12 +11,20 @@ import ListItemText from '@mui/material/ListItemText';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
+const useStyles = makeStyles({
+	active: {
+		backgroundColor: '#f4f4f4 !important',
+	},
+});
 export default function Layout({ children }) {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const classes = useStyles();
 	return (
 		<div>
 			<aside>
@@ -47,7 +55,8 @@ export default function Layout({ children }) {
 						<List>
 							{[
 								{ text: 'Home', path: '/' },
-								{ text: 'Example1', path: '/example-1' },
+								{ text: 'Login Form', path: '/login-form' },
+								{ text: 'Form', path: '/form' },
 							].map((i) => (
 								<ListItem
 									key={i.text}
@@ -55,6 +64,7 @@ export default function Layout({ children }) {
 									onClick={() => {
 										navigate(i.path);
 									}}
+									className={i.path === location.pathname ? classes.active : ''}
 								>
 									<ListItemText primary={i.text} />
 								</ListItem>

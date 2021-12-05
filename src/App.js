@@ -1,18 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Layout from './components/Layout/index';
 import Home from './pages/Home';
-import Example1 from './pages/Example1';
+import LoginForm from './pages/LoginForm';
+import Form from './pages/Form';
 
+const theme = createTheme();
 function App() {
 	return (
 		<BrowserRouter>
-			<Layout>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/example-1" element={<Example1 />} />
-				</Routes>
-			</Layout>
+			<ThemeProvider theme={theme}>
+				<Layout>
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/login-form" element={<LoginForm />} />
+						<Route path="/form" element={<Form />} />
+					</Routes>
+				</Layout>
+			</ThemeProvider>
 		</BrowserRouter>
 	);
 }
